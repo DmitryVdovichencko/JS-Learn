@@ -1,4 +1,6 @@
 
+<img src="https://www.howtographql.com/static/howtographql.d1a2e5b4.svg" width="48" style="display:inline-block; float:left;"> 
+
 # Основы GraphQL
 ## Что это и зачем тебе GraphQL?
 GraphQL новый стандарт API (application programming interface — "программный интерфейс приложения"), который является более эффективной, мощной и гибкой альтернативой архитекутры REST (Representational State Transfer — "передача состояния представления").
