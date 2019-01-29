@@ -37,30 +37,17 @@ API определяет каким образом клиент может по�
 
 Одна из самых больших проблем REST архитектуры в том, что когда клиент загружает данные по ссылкам ему возвращаются фиксированные структуры данных, и довольно сложно разаработать API таким способом, чтобы клиенты получали только те данные, которые им необходимы.
 
-### Загрузка излишних данных
+В результате при загрузке JSON с данными пользователей загрузятся все данные, а не только их имена, например. Недополучение данных возникает потому что в возвращаемой информации недостаточно данных, например отсутствуют посты пользователя, поэтому нужно делать еще один запрос.
 
-Overfetching means that a client downloads more information than is actually required in the app. Imagine for example a screen that needs to display a list of users only with their names. In a REST API, this app would usually hit the /users endpoint and receive a JSON array with user data. This response however might contain more info about the users that are returned, e.g. their birthdays or addresses - information that is useless for the client because it only needs to display the users' names.
-Underfetching and the n+1 problem
+### Быстрая разработка Frontend
 
-Another issue is underfetching and the n+1-requests problem. Underfetching generally means that a specific endpoint doesn’t provide enough of the required information. The client will have to make additional requests to fetch everything it needs. This can escalate to a situation where a client needs to first download a list of elements, but then needs to make one additional request per element to fetch the required data.
+При использовании REST архитектуры любое изменение клиентской части, UI интерфейса чаще всего потребует изменение backend части.
+С GraphQL можно производить изменения на стороне клиента без дополнительной работы на сервере.
+Кроме того GraphQL позволяет анализировать статистику запросов на сервер и получение данных.
 
-As an example, consider the same app would also need to display the last three followers per user. The API provides the additional endpoint /users/<user-id>/followers. In order to be able to display the required information, the app will have to make one request to the /users endpoint and then hit the /users/<user-id>/followers endpoint for each user.
-Rapid Product Iterations on the Frontend
+### Преимущества применения Схемы и Системы типов данных
 
-A common pattern with REST APIs is to structure the endpoints according to the views that you have inside your app. This is handy since it allows for the client to get all required information for a particular view by simply accessing the corresponding endpoint.
+GraphQL использует строгую типизацию для определения возможностей API. Все типы, которые представлены API внесены в схему с использованием GraphQL SDL (Schema Definition Language). Эта схема составляет "контракт" между клиентом и сервером для определения того, каким образом клиент получит доступ к данным.
 
-The major drawback of this approach is that it doesn’t allow for rapid iterations on the frontend. With every change that is made to the UI, there is a high risk that now there is more (or less) data required than before. Consequently, the backend needs to be adjusted as well to account for the new data needs. This kills productivity and notably slows down the ability to incorporate user feedback into a product.
+После того как схема определена, команды, работающие над бэкендом и фронтендом могут делать свою работу, не договариваясь об обмене данными, поскольку теперь будет определена структура данных для передачи по сети.
 
-With GraphQL, this problem is solved. Thanks to the flexible nature of GraphQL, changes on the client-side can be made without any extra work on the server. Since clients can specify their exact data requirements, no backend engineer needs to make adjustments when the design and data needs on the frontend change.
-Insightful Analytics on the Backend
-
-GraphQL allows you to have fine-grained insights about the data that’s requested on the backend. As each client specifies exactly what information it’s interested in, it is possible to gain a deep understanding of how the available data is being used. This can for example help in evolving an API and deprecating specific fields that are not requested by any clients any more.
-
-With GraphQL, you can also do low-level performance monitoring of the requests that are processed by your server. GraphQL uses the concept of resolver functions to collect the data that’s requested by a client. Instrumenting and measuring performance of these resolvers provides crucial insights about bottlenecks in your system.
-Benefits of a Schema & Type System
-
-GraphQL uses a strong type system to define the capabilities of an API. All the types that are exposed in an API are written down in a schema using the GraphQL Schema Definition Language (SDL). This schema serves as the contract between the client and the server to define how a client can access the data.
-
-Once the schema is defined, the teams working on frontend and backends can do their work without further communication since they both are aware of the definite structure of the data that's sent over the network.
-
-Frontend teams can easily test their applications by mocking the required data structures. Once the server is ready, the switch can be flipped for the client apps to load the data from the actual API.
