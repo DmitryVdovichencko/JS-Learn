@@ -224,6 +224,7 @@ type Post {
 Итак, у нас есть 2 созданных нами типа: `Person` и `Post`.
 Пользователь `Person` содержит имя, возраст, и массив постов `posts`. В свою очередь пост `Post` содержит название поста, а также автора, который указывает на пользователя `Person`.
 
+![GraphQL Schema](https://res.cloudinary.com/practicaldev/image/fetch/s--tzrrXnNX--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/90hhjmdwd077crgzu6bn.png)
 
 
 
