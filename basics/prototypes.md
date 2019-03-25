@@ -1,6 +1,8 @@
-# Прототипы и наследование в JS.
+# Прототипы и наследование в JS :family:.
 
-## Объекты в JS.
+## Объекты в JS :gift:.
+
+Оригинал статьи по которой написан конспект :pencil2: : [Understanding Prototypes and Inheritance in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript)
 
 Каждый объект в JS имеет внутреннее свойство `[[Prototype]]`.
 
@@ -9,20 +11,20 @@ let x = {};
 // В таком виде мы обычно создаем объект хотя можно воспользоваться и конструктором объектов let x = new Object()
 ```
 
-Двойные квадратные скобки в которые заключено свойство `[[Prototype]]` говорят о том, что это внутреннее свойство и мы не можем получить к нему доступ напрямую из кода.
+Двойные квадратные скобки в которые заключено свойство `[[Prototype]]` говорят о том, что это внутреннее свойство и мы не можем получить к нему доступ напрямую из кода.:confounded:
 
-Чтобы найти свойство `[[Prototype]]` вновь созданного объекта обратимся к методу `getPrototypeOf()`:
+Чтобы найти свойство `[[Prototype]]` вновь созданного объекта обратимся к методу `getPrototypeOf()`: :point_down:
 
 ```javascript
 Object.getPrototypeOf(x);
 ```
-Результат будет состоять из нескольких встроенных свойств и методов
+Результат будет состоять из нескольких встроенных свойств и методов :information_desk_person:
 
 ```
 Output
 {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, …}
 ```
-Другой способ найти свойство `[[Prototype]]` использовать свойство `__proto__`, которое представляет внутреннее свойство объекта `[[Prototype]]`
+Другой способ найти свойство `[[Prototype]]` использовать свойство `__proto__`, которое представляет внутреннее свойство объекта `[[Prototype]]`.
 
 Важно помнить, что `__proto__` - устаревшая возможность. Она не должна импользоваться в продакшен коде и не представлена в современных браузерах.
 
@@ -36,54 +38,63 @@ Output
 {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, …}
 ```
 
-__Важно помнить, что каждый объект в JavaScript имеет свойство `[[Prototype]]` т.к. это может помочь при создании двух или более объектов, связанных между собой.__
+:bookmark:__Важно помнить, что каждый объект в JavaScript имеет свойство `[[Prototype]]` т.к. это может помочь при создании двух или более объектов, связанных между собой.__ :grey_exclamation:
 
 Объекты, которые мы создаем имеют свойство `[[Prototype]]`, также как и встроенные объекты, например `Date` или `Array`.
-Ссылки от одного объекта к докгому могут создаваться при помощи этого внутреннего свойства.
+Ссылки от одного объекта к другому могут создаваться при помощи этого внутреннего свойства. :raised_hands:
 
-## Прототипное наследование
+## Прототипное наследование 
 
-Prototype Inheritance
-When you attempt to access a property or method of an object, JavaScript will first search on the object itself, and if it is not found, it will search the object's [[Prototype]]. If after consulting both the object and its [[Prototype]] still no match is found, JavaScript will check the prototype of the linked object, and continue searching until the end of the prototype chain is reached.
+:mag: Когда мы пытаемся получить доступ к свойству или методу объекта JavaScript сначала ищет в самом объекте, и если ничего не найдено, поиск продолжится в свойстве объекта `[[Prototype]]`. Если ни поиск в самом объекте, ни поиск в свойстве `[[Prototype]]` не дали результатов, Javascript проверит линкованный объект и продолжит поиск до конца цепочки прототипов.
 
-At the end of the prototype chain is Object.prototype. All objects inherit the properties and methods of Object. Any attempt to search beyond the end of the chain results in null.
+В конце цепочки нас ожидает `Object.prototype`. Все объекты наследуют свойства и методы `Object`. Любая попытка поискать за гранью конца цепочки прототипов приведет к `null`.
 
-In our example, x is an empty object that inherits from Object. x can use any property or method that Object has, such as toString().
+В нашем примере, `x` пустой объект который наследует свои свойства от Object. `x` может использовать любое свойство или метод `Object` например `toString()`.
 
+```javascript
 x.toString();
-Output
+// Output
 [object Object]
-This prototype chain is only one link long. x -> Object. We know this, because if we try to chain two [[Prototype]] properties together, it will be null.
+```
 
+Эта цепочка прототипов содержит только одну ссылку: `x -> Object`. Мы это знаем, поскольку попытка поиска двух свойств `[[Prototype]]` приведет к `null`.
+
+```javascript
 x.__proto__.__proto__;
-Output
+// Output
 null
-Let's look at another type of object. If you have experience Working with Arrays in JavaScript, you know they have many built-in methods, such as pop() and push(). The reason you have access to these methods when you create a new array is because any array you create has access to the properties and methods on the Array.prototype.
+```
 
-We can test this by creating a new array.
+Посмотрим на другой тип объекта. Если у вас был опыт работы с массивами в JavaScript, вы знаете что они имеют много встроенных методов, например `pop()` и `push()`. Причина по которой у нас есть доступ к этим методам является то, что при создании нового массива, он получает доступ к свойствам и методам `Array.prototype` :sparkles:
 
+
+```javascript
 let y = [];
-Keep in mind that we could also write it as an array constructor, let y = new Array().
-
-If we take a look at the [[Prototype]] of the new y array, we will see that it has more properties and methods than the x object. It has inherited everything from Array.prototype.
+/* Помним что мы также можем создать массив с помощью конструктора, let y = new Array().
+Посмотрим на [[Prototype]] нового массива и увидим свойства и методы унаследованные от, Array.prototype.*/
 
 y.__proto__;
 [constructor: ƒ, concat: ƒ, pop: ƒ, push: ƒ, …]
-You will notice a constructor property on the prototype that is set to Array(). The constructor property returns the constructor function of an object, which is a mechanism used to construct objects from functions.
+```
+Можно заметить что свойство `constructor` указывает на  `Array()`. Свойство  `constructor` возвращает функцию конструктора объекта, этот механизм используется при создании объекта с помощью функций.
 
-We can chain two prototypes together now, since our prototype chain is longer in this case. It looks like y -> Array -> Object.
+И раз уж цепочка прототипов в этот раз длиннее можно попробовать получить доступ к следующему прототипу по цепочке. Это будет выглядеть вроде: `y -> Array -> Object` :boom: .
 
+```javascript
 y.__proto__.__proto__;
-Output
+// Output
 {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, …}
-This chain is now referring to Object.prototype. We can test the internal [[Prototype]] against the prototype property of the constructor function to see that they are referring to the same thing.
+```
+Теперь эта цепочка будет ссылаться на `Object.prototype`. Мы можем проверить внутреннее свойство `[[Prototype]]` на равенство `prototype` конструкторов Array и Object.
 
+```javascript
 y.__proto__ === Array.prototype;            // true
 y.__proto__.__proto__ === Object.prototype; // true
-We can also use the isPrototypeOf() method to accomplish this.
-
+// для такой проверки можно использовать метод isPrototypeOf().
 Array.prototype.isPrototypeOf(y);      // true
 Object.prototype.isPrototypeOf(Array); // true
+```
+
 We can use the instanceof operator to test whether the prototype property of a constructor appears anywhere within an object's prototype chain.
 
 y instanceof Array; // true
