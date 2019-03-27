@@ -8,7 +8,8 @@
 
 ```javascript
 let x = {};
-// В таком виде мы обычно создаем объект хотя можно воспользоваться и конструктором объектов let x = new Object()
+// В таком виде мы обычно создаем объект 
+// хотя можно воспользоваться и конструктором объектов let x = new Object()
 ```
 
 Двойные квадратные скобки в которые заключено свойство `[[Prototype]]` говорят о том, что это внутреннее свойство и мы не можем получить к нему доступ напрямую из кода.:confounded:
@@ -95,15 +96,12 @@ Array.prototype.isPrototypeOf(y);      // true
 Object.prototype.isPrototypeOf(Array); // true
 ```
 
-We can use the instanceof operator to test whether the prototype property of a constructor appears anywhere within an object's prototype chain.
+TL;DR, все JavaScript объекты имеют скрытое внутреннее свойство `[[Prototype]]` (которое может быть представлено свойством __proto__ в некоторых браузерах). Объекты могут расширяться и наследовать свойства и методы от `[[Prototype]]` их конструктора.
 
-y instanceof Array; // true
-To summarize, all JavaScript objects have a hidden, internal [[Prototype]] property (which may be exposed through __proto__ in some browsers). Objects can be extended and will inherit the properties and methods on [[Prototype]] of their constructor.
+Эти прототипы могут соединяться по цепочке, и каждый дополнительный объект наслдует все по цепочке. Цепочка заканчивается `Object.prototype`.
 
-These prototypes can be chained, and each additional object will inherit everything throughout the chain. The chain ends with the Object.prototype.
-
-Constructor Functions
-Constructor functions are functions that are used to construct new objects. The new operator is used to create new instances based off a constructor function. We have seen some built-in JavaScript constructors, such as new Array() and new Date(), but we can also create our own custom templates from which to build new objects.
+## Конструкторы
+Конструкторы это функции которые используются для создания новых объектов. Оператор `new` используется для создания новых экземпляров, основанных на функции конструктора. Мы уже знаем несколько встроенных JavaScript конструторов, таких как `new Array()` и `new Date()`, но мы также можем создавать собственные шаблоны для создания новых объектов.
 
 As an example, let's say we are creating a very simple, text-based role-playing game. A user can select a character and then choose what character class they will have, such as warrior, healer, thief, and so on.
 
