@@ -11,7 +11,7 @@
 ```javascript
 
 { /* Don't try to call me, before I appear, it works with var, not with me.
-  */ If you try, you've got reference error, boom!
+  If you try, you've got reference error, boom!*/ 
   console.log(varFromTheBlock);
   // ReferenceError: can't access lexical declaration `varFromTheBlock' before initialization
   let varFromTheBlock = "Hey I'm Var from the Block, don't mess with me out from this block";
@@ -58,7 +58,7 @@
  bigConst.push('cash');
  // Yes I can talk with array if you want and bring him some 'cash' 
  console.log( bigConst ); // ['cars','weapons','cash']
-  //  But don't try to change the dude, which I'm working for!
+  //  But don't try to broke my powerful connections with guys, which I'm working for!
   bigConst = 'plant'; //TypeError
   // I told you! It's typeError, man.
 }
