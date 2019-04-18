@@ -123,8 +123,9 @@ let a = tmp[0], b = tmp[1], c = tmp[2];
 
 ### Деструктурирующее присваивание
 
+
 ```javascript
-let [a,b,c] = foo();
+let [a,b,c] = creatingArr();
 ```
 
 
