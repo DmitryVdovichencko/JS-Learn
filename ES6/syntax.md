@@ -125,7 +125,19 @@ let a = tmp[0], b = tmp[1], c = tmp[2];
 
 
 ```javascript
+// для массива
 let [a,b,c] = creatingArr();
+
+// для объекта
+function creatingObj(){
+  return{
+  x:4,
+  y:5,
+  z:6
+  };
+}
+
+let {x,y,z} = creatingObj 
 ```
 
 
