@@ -1,0 +1,52 @@
+/*CSS reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/*End of CSS reset*/
+
+body{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	width:100vw;
+	height:100vh;
+	background-image: url('../img/pink_dust.png');
+}
+h1{
+	font-family: 'Patua One', cursive;
+	font-weight: normal;
+	padding: 20px;
+	margin:20px auto;
+	font-size: 3em;
+	color:#FFDB3A;
+	
+}
+.point {
+    width: 15px;
+    height: 15px;
+   background: radial-gradient(#fff, #0ff);
+   border-color:rgba(255,255,255,0.1);
+    border-radius: 50%;
+
+    box-shadow: 0px 0px 10px 5px #0ff;
+    /* in order: x offset, y offset, blur size, spread size, color */
+    /* blur size and spread size are optional (they default to 0) */
+}
