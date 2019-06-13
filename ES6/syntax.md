@@ -125,10 +125,14 @@ let a = tmp[0], b = tmp[1], c = tmp[2];
 
 
 ```javascript
-// для массива
+// создаем массив
+function creatingArr(){
+  return [1,2,3];
+}
+// присваеваем значения для массива
 let [a,b,c] = creatingArr();
 
-// для объекта
+// Создаем объект 
 function creatingObj(){
   return{
   x:4,
@@ -136,8 +140,32 @@ function creatingObj(){
   z:6
   };
 }
+// Присваеваем значния свойств объекта
+let {x:x,y:y,z:z} = creatingObj(); 
+```
+Если переменная создается с тем же именем что и свойство объекта - можем сократить запись
 
-let {x,y,z} = creatingObj 
+```javascript
+let {x,y,z} = creatingObj();
+```
+Главная особенность такого шаблона: `source:target` инвертируется в `target-->source`
+
+И если нам нужны другие названия свойств объекта:
+
+```javascript
+let {x: myNewProp,y: awesomeProp,z: anotherCoolProp} = creatingObj();
 ```
 
+И раз уж мы перевернули шаблон `source:target` в `target-->source` то `x,y,z` - значения, а `myNewProp, awesomeProp, anotherCoolProp` - имена свойств.
+
+Если нужно присвоить значения без объявления переменных используем тот же шаблон только для объектов обернем выражение в круглые скобки чтобы JS не принял объект слева за блок кода.
+
+
+```javascript
+// присваеваем значения для массива
+[a,b,c] = creatingArr();
+
+// Присваеваем значния свойств объекта
+( {x:x,y:y,z:z} = creatingObj() ); 
+```
 
