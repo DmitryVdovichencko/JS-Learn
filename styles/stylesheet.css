@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'AGBenguiatCyr';
+    src: url('AGBenguiatCyrBoldBold.woff2') format('woff2'),
+        url('AGBenguiatCyrBoldBold.woff') format('woff'),
+        url('AGBenguiatCyrBoldBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+

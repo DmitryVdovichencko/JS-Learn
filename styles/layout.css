@@ -22,29 +22,33 @@ time, mark, audio, video {
 /*End of CSS reset*/
 
 body{
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	width:100vw;
-	height:100vh;
-	background-image: url('../img/pink_dust.png');
+
+	background:black;
+	/*background-image: url('../img/pink_dust.png');*/
 }
-h1{
-	font-family: 'Patua One', cursive;
-	font-weight: normal;
-	padding: 20px;
-	margin:20px auto;
-	font-size: 3em;
-	color:#FFDB3A;
-	
+
+@font-face {
+    font-family: 'Benguiat';
+    src: url('AGBenguiatCyrBoldBold.woff2') format('woff2'),
+        url('AGBenguiatCyrBoldBold.woff') format('woff'),
+        url('AGBenguiatCyrBoldBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
-.point {
-    width: 8px;
-    height: 8px;
-   	background: #fff; 
-    border-radius: 50%;
-    box-shadow: 0px 0px 10px 8px #0ff;
-    /* in order: x offset, y offset, blur size, spread size, color */
-    /* blur size and spread size are optional (they default to 0) */
+/*h1 {
+font-family: 'Benguiat', normal;
+font-size: 10em;
+text-transform: uppercase;
+margin-left:0px;
+color: transparent;
 }
+h1 text {
+fill: currentColor;
+}
+h1 svg { overflow: visible }
+h1 use {
+stroke: white;
+stroke-width: 3;
+stroke-linejoin: round;
+}
+*/
