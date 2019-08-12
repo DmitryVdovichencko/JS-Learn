@@ -103,7 +103,9 @@ TL;DR, все JavaScript объекты имеют скрытое внутрен
 ## Конструкторы
 Конструкторы это функции которые используются для создания новых объектов. Оператор `new` используется для создания новых экземпляров, основанных на функции конструктора. Мы уже знаем несколько встроенных JavaScript конструторов, таких как `new Array()` и `new Date()`, но мы также можем создавать собственные шаблоны для создания новых объектов.
 
-As an example, let's say we are creating a very simple, text-based role-playing game. A user can select a character and then choose what character class they will have, such as warrior, healer, thief, and so on.
+В качестве примера, давайте создадим очень простую текстовую ролевую игру. Пользователь может выбрать персонажа, и затем выбирает кем будет его персонаж: воином, лекарем, вором и т.д.
+
+
 
 Since each character will share many characteristics, such as having a name, a level, and hit points, it makes sense to create a constructor as a template. However, since each character class may have vastly different abilities, we want to make sure each character only has access to their own abilities. Let's take a look at how we can accomplish this with prototype inheritance and constructors.
 
