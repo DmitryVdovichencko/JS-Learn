@@ -4,7 +4,7 @@
 	Number.prototype.minus = function(value){
 		return this - value
 	}
-	console.log(`Look I've added to Number new methods so (1).plus(2).minus(3) = ${(1).plus(2).minus(3)}`)
+	console.log(`Look I've added to Number new methods so (1).plus(3).minus(3) = ${(1).plus(2).minus(3)}`)
 
 	// how to join substrings with delimiter
 
@@ -20,3 +20,25 @@
 	}
 	console.log(isPalindrome('www'))
 
+	//Fibonacci
+
+	function fib(num){
+		return num <= 1 ? n: fib(n-1) + fib(n-2)
+	}
+	//recursion is tooo slow so 
+	function fibLoop(num){
+		//set base values to 1
+		let a = 1, b = 1
+		// get sum
+		// let c = a + b;
+		// then if we reassign a = b b = c and get sum with c again, so we have next num in fibonacci seq
+		//let's do it with loop
+		for (let i = 3; i <= num; i++) {
+			let c = a + b;
+			a = b;
+			b = c;
+		}
+		return b;
+
+	}
+console.log(`Fib for 77 is ${fibLoop(77)}`)
