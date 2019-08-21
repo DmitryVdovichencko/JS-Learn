@@ -492,6 +492,40 @@ CallStack - стэк вызовов структура данных котора
 
 ## React.
 
+
+### Состояние
+
+#### Работаем с состоянием в React: 4 важных принципа.
+
+[Original article from FreeCodeCamp](https://www.freecodecamp.org/news/handling-state-in-react-four-immutable-approaches-to-consider-d1f5c00249d5/)
+
+На сегодня, возможно самая сложная тема для понимания в React - это состояние: `state`.
+
+Представим, у вас есть форма для редактирования пользователем. Распространенный подход: создать один обработчик изменений, чтобы работать с изменением любого поля формы. 
+
+Выглядит это примерно так:
+
+```javascript
+
+updateState(event) {
+ const {name, value} = event.target;
+ let user = this.state.user; // это ссылка, не копия...
+ user[name] = value; // так что меняем состояние?
+ return this.setState({user});
+}
+
+```
+
+О четвертой строке кода стоит поволноваться. Четвертая строка действительно меняет состояние `state`, потому что переменная `user` ссылается на `state`. В react состояние трактуется как неизменное.
+
+Из [документации React](https://facebook.github.io/react/docs/react-component.html#state):
+
+> Никогда не меняйте `this.state` напрямую, т.к. вызов `setState()` в итоге может перезаписать те изменения, что вы сделали. 
+Работайте с состоянием `this.state`, как будто оно неизменно. 
+
+
+
+
 ## Redux.
 
 ## Instruments: npm, yarn, webpack.
