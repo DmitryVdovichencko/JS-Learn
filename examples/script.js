@@ -32,7 +32,7 @@
 		// get sum
 		// let c = a + b;
 		// then if we reassign a = b b = c and get sum with c again, so we have next num in fibonacci seq
-		//let's do it with loop
+		// let's do it with loop
 		for (let i = 3; i <= num; i++) {
 			let c = a + b;
 			a = b;
