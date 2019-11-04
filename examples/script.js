@@ -1,3 +1,5 @@
+	
+	//расширяем прототип Number новыми методами
 	Number.prototype.plus = function(value){
 		return this + value
 	}
@@ -42,3 +44,46 @@
 
 	}
 console.log(`Fib for 77 is ${fibLoop(77)}`)
+
+const strWithDelimiter = (delim,...strArr) => strArr.join(`${delim}`)
+console.log(`String with delimiter is : ${strWithDelimiter('*','1','b','1c')}`);
+
+// Tree structure
+
+let tree = {
+	valueNode: 3,
+	next: [{
+				valueNode: 1,
+				next: null
+			},
+			{
+				valueNode: 3,
+				next: null
+			},
+			{
+				valueNode: 2,
+				next: null
+			},
+			{
+				valueNode: 2,
+				next: [
+					{
+						valueNode: 1,
+						next: null
+					},
+					{
+						valueNode: 5,
+						next: null
+					}
+				]
+			}]
+};
+// Sum of tree's nodes
+// Recursion
+const sumTree = (tree) => {
+	let result;
+	if(tree.next){
+		tree.next
+	}
+}
+
