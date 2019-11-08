@@ -105,4 +105,84 @@ export const DO_SOMETHING_OVER = "DO_SOMETHING_OVER";
 Примерно так работает каждый `emoji` компонент в этом приложении.
 Также помните, что каждый маршрут это отдельный рендеринг EmojiLand компонента
 
+## Перемещайся по React приложению как чемпион
+
+Допустим по завершению ложного действия мы хотим перейти на другой маршрут приложенния EmojiLand
+
+Как это сделать?
+
+Во-первых, помним что при переходе на стартовый маршрут будет отображен компонент `theAngryDude`
+
+Наиболее декларативный подход для поддержки перемещения это использование компонента `Redirect` из `React-router`
+
+
+Раз мы хотим переместится из компонента `AngryDude`, сначала, импортируем его в `containers/AngryDude.js`:
+
+```javascript
+import { Redirect } from "react-router-dom";
+```
+Для того чтобы редирект сработал он должен быть отображен как обычный компонент. В нашем случае мы перенаправимся когда `appState` установится в значение `DO_SOMETHING_OVER`, т.е. ложное действие окончено.
+
+```javascript
+const AngryDude = ({ appState, handleEmojiAction }) => {
+    return appState === DO_SOMETHING_OVER ? (
+<Redirect to="/thumbs" />
+    ) : (
+      <EmojiLand
+        EmojiBg="linear-gradient(-180deg, #611A51 0%, #10096D 100%)"
+        EmojiImg={angryDudeImg}
+        EmojiBtnText="I'm so pissed. Click me"
+        HandleEmojiAction={this._handleEmojiAction}
+        appState={this.props.appState}
+ />
+ ```
+ 
+ То же самое выполним для остальных компонентов. Что ж похоже это было довольно просто? Но есть проблемка
+ 
+ ### Избегайте перезаписи редиректов в истории браузера
+ 
+Я открою новый браузер прокликаю все приложение, но, в какой-то момент я попробую вернуться назад с помощью кнопки браузера `Назад`.
+
+В результате я не вернусь к предыдущему маршруту, а перейду к стартовой странице своего браузера.
+
+Почему?
+
+Это потому, что по умолчанию использование компонента `Redirect` заменит текущую локацию в истории браузера.
+
+Так что даже если мы прошли несколько маршрутов, они подменяли друг друга в записях браузера.
+
+А значит, с точки зрения браузера мы посетили лишь один маршрут и таким образом нажав на кнопку `Назад` мы попадем на домашнюю страницу.
+
+Это как с массивами: вместо чтобы добавлять эдеметы в массив через `push `, мы меняем в нем текущее значение.
+
+Вот как это исправить.
+
+Компонент `Redirect` может принимать свойство `push` которое позволит избежать подобное поведение. Со свойством `push` вы будете добавлять (`pushить`) каждый маршрут в стэк истории браузера и они НЕ будут заменены.
+
+```javascript
+return appState === DO_SOMETHING_OVER ? (
+    <Redirect push to="/thumbs" />
+  ) : (
+    <EmojiLand
+      EmojiBg="linear-gradient(-180deg, #611A51 0%, #10096D 100%)"
+      EmojiImg={angryDudeImg}
+      EmojiBtnText="I'm so pissed. Click me"
+      HandleEmojiAction={handleEmojiAction}
+      appState={appState}
+    />
+  );
+```
+
+### Поддержка состояния при навигации
+
+Перемещаясь от одного маршрута к другому, переменные пре
+
+As you move from one route to another, variables in the previous route aren’t carried over to the next route. They are gone!
+
+Yes gone, except you do some work on your end.
+
+What’s interesting is that the Redirect component makes this quite easy.
+
+As opposed to passing a string to prop into Redirect, you could also pass in an object.
+
 
