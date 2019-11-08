@@ -175,14 +175,26 @@ return appState === DO_SOMETHING_OVER ? (
 
 ### Поддержка состояния при навигации
 
-Перемещаясь от одного маршрута к другому, переменные пре
+Перемещаясь от одного маршрута к другому, переменные предыдущего маршрута не передадлутся следующему маршруту. Они потеряны.
 
-As you move from one route to another, variables in the previous route aren’t carried over to the next route. They are gone!
+Да потеряны, если вы ничего не предпримите.
 
-Yes gone, except you do some work on your end.
+Что интересно компонент `Redirect` делает это достточно легко
 
-What’s interesting is that the Redirect component makes this quite easy.
+Вся штука в том, чтор в свойствах `Redirect` можно передать как строку так и объект.
+А значит, помимо маршрута назначения `to` можно передать и объект `state`.
 
-As opposed to passing a string to prop into Redirect, you could also pass in an object.
-
+```javascript
+<Redirect
+      push
+to={{
+        pathname: "/thumbs",
+        state: {
+          humanType: "Cat Person",
+          age: 12,
+          sex: "none"
+        }
+      }}
+    />
+```
 
